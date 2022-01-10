@@ -1,5 +1,7 @@
 {
     "files.associations": {
-        "arraylist.h": "c"
-    }
+        "arraylist.h": "c",
+        "stdlib.h": "c"
+    },
+    "C_Cpp.errorSquiggles": "Disabled"
 }

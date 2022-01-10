@@ -4,9 +4,12 @@
 #define TRUE	1
 #define FALSE	0
 
+#include "NameCard.h"
+
 /*** ArrayList의 정의 ****/
 #define LIST_LEN	100
-typedef int LData;
+// typedef int LData;
+typedef NameCard * LData;
 
 typedef struct __ArrayList
 {
