@@ -9,76 +9,130 @@ typedef struct _node
 
 int main(void)
 {
-	Node * head = NULL;    // NULL Æ÷ÀÎÅÍ ÃÊ±âÈ­
+	Node * head = NULL;    // NULL í¬ì¸í„° ì´ˆê¸°í™”
 	Node * tail = NULL;
 	Node * cur = NULL;
 
 	Node * newNode = NULL;
 	int readData;
+	// exercise 04-2
+	Node * dummy = (Node*)malloc(sizeof(Node));
+	dummy->data = 0;
+	dummy->next = NULL;
+	head = dummy;
+	tail = dummy;
+	////////////////
 
-	/**** µ¥ÀÌÅÍ¸¦ ÀÔ·Â ¹Ş´Â °úÁ¤ ****/
+	/**** ë°ì´í„°ë¥¼ ì…ë ¥ ë°›ëŠ” ê³¼ì • ****/
 	while(1)
 	{
-		printf("ÀÚ¿¬¼ö ÀÔ·Â: ");
+		printf("ìì—°ìˆ˜ ì…ë ¥: ");
 		scanf("%d", &readData);
 		if(readData < 1)
 			break;
 
-		/*** ³ëµåÀÇ Ãß°¡°úÁ¤ ***/
+		// /*** ë…¸ë“œì˜ ì¶”ê°€ê³¼ì • ***/
+		//// tailì— ì¶”ê°€ version
+		// newNode = (Node*)malloc(sizeof(Node));
+		// newNode->data = readData;
+		// newNode->next = NULL;
+
+		// if(head == NULL)
+		// 	head = newNode;
+		// else
+		// 	tail->next = newNode;
+
+		// tail = newNode;
+
+		// /*** ë…¸ë“œì˜ ì¶”ê°€ê³¼ì • ***/
+		// // headì— ì¶”ê°€ version
+		// newNode = (Node*)malloc(sizeof(Node));
+		// newNode->data = readData;
+		// newNode->next = head;
+
+		// head = newNode;
+
+		// if(tail == NULL){
+		// 	tail = newNode;
+		// }
+
+		// exercise 04-2
+		// /*** ë…¸ë“œì˜ ì¶”ê°€ê³¼ì • ***/
+		//// tailì— ì¶”ê°€ version
 		newNode = (Node*)malloc(sizeof(Node));
 		newNode->data = readData;
 		newNode->next = NULL;
 
-		if(head == NULL)
-			head = newNode;
-		else
-			tail->next = newNode;
-
+		tail->next = newNode;
 		tail = newNode;
+		////////////////
 	}
+
 	printf("\n");
 
-	/**** ÀÔ·Â ¹ŞÀº µ¥ÀÌÅÍÀÇ Ãâ·Â°úÁ¤ ****/
-	printf("ÀÔ·Â ¹ŞÀº µ¥ÀÌÅÍÀÇ ÀüÃ¼Ãâ·Â! \n");
-	if(head == NULL) 
-	{
-		printf("ÀúÀåµÈ ÀÚ¿¬¼ö°¡ Á¸ÀçÇÏÁö ¾Ê½À´Ï´Ù. \n");
-	}
-	else 
-	{
-		cur = head; 
-		printf("%d  ", cur->data);   // Ã¹ ¹øÂ° µ¥ÀÌÅÍ Ãâ·Â
+	/**** ì…ë ¥ ë°›ì€ ë°ì´í„°ì˜ ì¶œë ¥ê³¼ì • ****/
+	printf("ì…ë ¥ ë°›ì€ ë°ì´í„°ì˜ ì „ì²´ì¶œë ¥! \n");
+	// if(head == NULL) 
+	// {
+	// 	printf("ì €ì¥ëœ ìì—°ìˆ˜ê°€ ì¡´ì¬í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤. \n");
+	// }
+	// else 
+	// {
+	// 	cur = head; 
+	// 	printf("%d  ", cur->data);   // ì²« ë²ˆì§¸ ë°ì´í„° ì¶œë ¥
 		
-		while(cur->next != NULL)    // µÎ ¹øÂ° ÀÌÈÄÀÇ µ¥ÀÌÅÍ Ãâ·Â
-		{
-			cur = cur->next;
-			printf("%d  ", cur->data);
-		}
+	// 	while(cur->next != NULL)    // ë‘ ë²ˆì§¸ ì´í›„ì˜ ë°ì´í„° ì¶œë ¥
+	// 	{
+	// 		cur = cur->next;
+	// 		printf("%d  ", cur->data);
+	// 	}
+	// }
+
+	// exercise 04-2
+	cur = head;
+	while(cur->next != NULL)    // ë‘ ë²ˆì§¸ ì´í›„ì˜ ë°ì´í„° ì¶œë ¥
+	{
+		cur = cur->next;
+		printf("%d  ", cur->data);
 	}
+	////////////////
 	printf("\n\n");
 
-	/**** ¸Ş¸ğ¸®ÀÇ ÇØÁ¦°úÁ¤ ****/
-	if(head == NULL) 
-	{
-		return 0;    // ÇØÁ¦ÇÒ ³ëµå°¡ Á¸ÀçÇÏÁö ¾Ê´Â´Ù.
-	}
-	else 
-	{
-		Node * delNode = head;
-		Node * delNextNode = head->next;
+	// /**** ë©”ëª¨ë¦¬ì˜ í•´ì œê³¼ì • ****/
+	// if(head == NULL) 
+	// {
+	// 	return 0;    // í•´ì œí•  ë…¸ë“œê°€ ì¡´ì¬í•˜ì§€ ì•ŠëŠ”ë‹¤.
+	// }
+	// else 
+	// {
+	// 	Node * delNode = head;
+	// 	Node * delNextNode = head->next;
 
-		printf("%dÀ»(¸¦) »èÁ¦ÇÕ´Ï´Ù. \n", head->data);
-		free(delNode);    // Ã¹ ¹øÂ° ³ëµåÀÇ »èÁ¦
+	// 	printf("%dì„(ë¥¼) ì‚­ì œí•©ë‹ˆë‹¤. \n", head->data);
+	// 	free(delNode);    // ì²« ë²ˆì§¸ ë…¸ë“œì˜ ì‚­ì œ
 		
-		while(delNextNode != NULL)    // µÎ ¹øÂ° ÀÌÈÄÀÇ ³ëµå »èÁ¦ À§ÇÑ ¹İº¹¹®
-		{
-			delNode = delNextNode;
-			delNextNode = delNextNode->next;
+	// 	while(delNextNode != NULL)    // ë‘ ë²ˆì§¸ ì´í›„ì˜ ë…¸ë“œ ì‚­ì œ ìœ„í•œ ë°˜ë³µë¬¸
+	// 	{
+	// 		delNode = delNextNode;
+	// 		delNextNode = delNextNode->next;
 
-			printf("%dÀ»(¸¦) »èÁ¦ÇÕ´Ï´Ù. \n", delNode->data);
-			free(delNode);    // µÎ ¹øÂ° ÀÌÈÄÀÇ ³ëµå »èÁ¦
-		}
+	// 		printf("%dì„(ë¥¼) ì‚­ì œí•©ë‹ˆë‹¤. \n", delNode->data);
+	// 		free(delNode);    // ë‘ ë²ˆì§¸ ì´í›„ì˜ ë…¸ë“œ ì‚­ì œ
+	// 	}
+	// }
+
+	// exercise 04-2
+	Node * delNode = head;
+	Node * delNextNode = head->next;
+	while(delNextNode != NULL)    // ë‘ ë²ˆì§¸ ì´í›„ì˜ ë…¸ë“œ ì‚­ì œ ìœ„í•œ ë°˜ë³µë¬¸
+	{
+		delNode = delNextNode;
+		delNextNode = delNextNode->next;
+
+		printf("%dì„(ë¥¼) ì‚­ì œí•©ë‹ˆë‹¤. \n", delNode->data);
+		free(delNode);    // ë‘ ë²ˆì§¸ ì´í›„ì˜ ë…¸ë“œ ì‚­ì œ
 	}
+	////////////////
 
 	return 0;
 }
